@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="tb" border="2">
+        <thead id="thea">
+            <tr>
+                <th>Name</th>
+                <th>Cooking Time</th>
+                <th>Calaries</th>
+                <th>Rating</th>
+            </tr>
+            <tbody id="tbod"></tbody>
+        </thead>
+    </table>
+    <button onclick="pr()">Previous</button>
+    <button id="n">Next</button>
+</body>
+<script>
+    var s=0
+    var l=10;
+    function gentable(s,l)
+    {
+        document.getElementById("tbod").innerHTML=" "
+    fetch("http://dummyjson.com/recipes")
+    .then(response=>response.json())
+    .then(data=>{console.log(data.recipes)
+        for(var i=s;i<=l;i++){
+            var tro=document.createElement("tr")
+            var td1=document.createElement("td")
+            td1.innerText=data.recipes[i].name;
+            var td2=document.createElement("td")
+            td2.innerText=data.recipes[i].cookTimeMinutes;
+            var td3=document.createElement("td")
+            td3.innerText=data.recipes[i].caloriesPerServing;
+            var td4=document.createElement("td")
+            td4.innerText=data.recipes[i].rating;
+            tro.appendChild(td1);
+            tro.appendChild(td2);
+            tro.appendChild(td3);
+            tro.appendChild(td4);
+            document.getElementById("tbod").appendChild(tro)
+
+        }
+    })
+    }
+    gentable(s,l);
+    document.getElementById("n").onclick=function()
+    {
+        l+=10;
+        s+=10;
+        gentable(s,l);
+    
+    }
+
+    function pr(){
+        l-=10;
+        s-=10;
+        gentable(s,l);
+    }
+  
+</script>
+</html>
