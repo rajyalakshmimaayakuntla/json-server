@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<style>
+    #root{
+        border:2px solid rgb(197, 2, 2);
+        width: 400px;
+    }
+    #root2{
+        padding: 20px;
+        margin: 20px;
+        border:2px solid rgb(192, 2, 2);
+    }
+</style>
+<body>
+    <div id="root">
+    </div>
+    <script type="text/babel">
+        function Par(){
+            const[fn,sfn]=React.useState()
+            return(<div>
+                <h3>Parent</h3>
+                <input type="text" onKeyUp={(ev)=>{sfn(ev.target.value)}}/>
+                <i>{fn}</i>
+                <Child pv={fn}></Child>
+            </div>)
+        }
+        function Child(props){
+            return(<div id="root2">
+                <h3>Child</h3>
+                <h4>{props.pv}</h4>
+                </div>
+            )
+        }
+        ReactDOM.render(<Par/>,document.getElementById("root"))
+    </script>
+</body>
+</html>

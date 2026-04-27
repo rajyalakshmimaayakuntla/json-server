@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<style>
+    #cont{
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap:10px;
+    }
+    .card{
+        width:300px;
+        background-color: antiquewhite;
+        border-radius: 10px;
+    }
+    .card img{
+        width: 100%;
+        border-radius: 10px;
+    }
+</style>
+<body>
+    <div id="cont"></div>
+    <button onclick="prev()">Previous</button>
+    <button onclick="nxt()">Next</button> 
+</body>
+<script type="text/babel">
+    var s=10;
+    function gencards(s){
+    var jsx=[]
+    fetch("https://dummyjson.com/recipes?limit=10&skip="+s)
+    .then(response=>response.json())
+    .then(data=>{console.log(data.recipes)
+        for(var i=0;i<data.recipes.length;i++)
+        {
+            jsx.push(
+                <div className="card">
+                <h1>{data.recipes[i].name}</h1>
+                <img src={data.recipes[i].image}/>
+                </div>)
+        }
+        ReactDOM.render(jsx,document.getElementById("cont"))
+
+    })
+    }
+    gencards(s)
+    function nxt(){
+        s+=10;
+        gencards(s)
+    }
+    function prev(){
+        s-=10;
+        gencards(s)
+    }
+
+</script>
+</html>

@@ -9,27 +9,32 @@
     <table id="tb" border="2">
         <thead id="thea">
             <tr>
-                <th>Name</th>
-                <th>Cooking Time</th>
-                <th>Calaries</th>
-                <th>Rating</th>
+                <th id="nam">Name</th>
+                <th id="cooktime">Cooking Time</th>
+                <th id="calaries">Calaries</th>
+                <th id="rating">Rating</th>
             </tr>
-            <tbody id="tbod"></tbody>
         </thead>
+        <tbody id="tbod"></tbody>
     </table>
-    <button onclick="pr()">Previous</button>
+    <button id="p"onclick="pr()">Previous</button>
     <button id="n">Next</button>
 </body>
 <script>
-    var s=0
-    var l=10;
-    function gentable(s,l)
+    var s=10
+    recipesdata=[]
+    function gentable(s)
     {
         document.getElementById("tbod").innerHTML=" "
-    fetch("http://dummyjson.com/recipes")
+    fetch("http://dummyjson.com/recipes?limit=10&skip="+s)
     .then(response=>response.json())
-    .then(data=>{console.log(data.recipes)
-        for(var i=s;i<=l;i++){
+    .then(data=>{(recipesdata=data.recipes)
+        displaytable();
+    });
+   }     
+        function displaytable(){
+            for(var i=0;i<recipesdata.length;i++)
+            {
             var tro=document.createElement("tr")
             var td1=document.createElement("td")
             td1.innerText=data.recipes[i].name;
@@ -44,24 +49,35 @@
             tro.appendChild(td3);
             tro.appendChild(td4);
             document.getElementById("tbod").appendChild(tro)
-
-        }
-    })
-    }
-    gentable(s,l);
+            }
+            }
+            document.getElementById("nam").onclick=function(){
+            data.recipes.sort((a,b)=>a.name.localeCompare(b.name))
+            displaytable()
+            }
+    gentable(s);
     document.getElementById("n").onclick=function()
-    {
-        l+=10;
+    { 
+        document.getElementById("p").disabled=false
+        if(s>=30){
+          document.getElementById("n").disabled=true  
+        }
+        else{
         s+=10;
-        gentable(s,l);
+        gentable(s); }
     
     }
 
     function pr(){
-        l-=10;
+        document.getElementById("n").disabled=false
+        if(s<=0){
+            document.getElementById("p").disabled=true
+        }
+        else{
         s-=10;
-        gentable(s,l);
+        gentable(s);}
     }
+    
   
 </script>
 </html>

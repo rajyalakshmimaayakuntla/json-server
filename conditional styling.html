@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<style>
+    .male{
+        background-color: rgb(172, 172, 249);
+        width: 300px;
+        border-radius: 20px;
+        align-items: center;
+        padding: 10px;
+    }
+    .female{
+        width: 300px;
+        border-radius: 20px;
+        align-items: center;
+        padding: 10px;
+        background-color: pink;
+    }
+    #cont{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap:10px;
+    }
+</style>
+<body>
+    <div id="cont"></div>
+</body>
+<script type="text/babel">
+ var actors=  [
+{
+"name": "Pooja Hegde",
+"age": 35,
+"gender": "Female",
+"no_of_movies": 30,
+"birth_place": "Mumbai, Maharashtra",
+"first_movie": "Mugamoodi (Tamil) / Telugu debut: Oka Laila Kosam"
+},
+{
+"name": "Chiranjeevi",
+"age": 70,
+"gender": "Male",
+"no_of_movies": 150,
+"birth_place": "Mogalthur, Andhra Pradesh",
+"first_movie": "Punadhirallu"
+},
+{
+"name": "Keerthy Suresh",
+"age": 33,
+"gender": "Female",
+"no_of_movies": 35,
+"birth_place": "Chennai, Tamil Nadu",
+"first_movie": "Geethaanjali (child roles earlier) / Lead debut: Pillaiyar Theru Kadaisi Veedu"
+},
+{
+"name": "Mahesh Babu",
+"age": 50,
+"gender": "Male",
+"no_of_movies": 35,
+"birth_place": "Chennai, Tamil Nadu",
+"first_movie": "Raja Kumarudu"
+},
+{
+"name": "Samantha Ruth Prabhu",
+"age": 38,
+"gender": "Female",
+"no_of_movies": 45,
+"birth_place": "Chennai, Tamil Nadu",
+"first_movie": "Ye Maaya Chesave"
+},
+{
+"name": "Prabhas",
+"age": 46,
+"gender": "Male",
+"no_of_movies": 25,
+"birth_place": "Madras (Chennai), Tamil Nadu",
+"first_movie": "Eeswar"
+},
+{
+"name": "Allu Arjun",
+"age": 42,
+"gender": "Male",
+"no_of_movies": 20,
+"birth_place": "Chennai, Tamil Nadu",
+"first_movie": "Gangotri"
+},
+{
+"name": "Kajal Aggarwal",
+"age": 40,
+"gender": "Female",
+"no_of_movies": 70,
+"birth_place": "Mumbai, Maharashtra",
+"first_movie": "Kyun! Ho Gaya Na..."
+},
+{
+"name": "Ram Charan",
+"age": 40,
+"gender": "Male",
+"no_of_movies": 22,
+"birth_place": "Chennai, Tamil Nadu",
+"first_movie": "Chirutha"
+},
+{
+"name": "Nagarjuna",
+"age": 66,
+"gender": "Male",
+"no_of_movies": 90,
+"birth_place": "Vishakhapatnam / Chennai region, Andhra Pradesh",
+"first_movie": "Vikram"
+},
+
+{
+"name": "Anushka Shetty",
+"age": 44,
+"gender": "Female",
+"no_of_movies": 55,
+"birth_place": "Mangalore, Karnataka",
+"first_movie": "Super"
+},
+{
+"name": "Tamannaah Bhatia",
+"age": 36,
+"gender": "Female",
+"no_of_movies": 80,
+"birth_place": "Mumbai, Maharashtra",
+"first_movie": "Chand Sa Roshan Chehra (Hindi) / Telugu debut: Sri"
+},
+{
+"name": "Jr. NTR",
+"age": 42,
+"gender": "Male",
+"no_of_movies": 35,
+"birth_place": "Hyderabad, Telangana",
+"first_movie": "Ninnu Choodalani"
+},
+{
+"name": "Trisha Krishnan",
+"age": 42,
+"gender": "Female",
+"no_of_movies": 80,
+"birth_place": "Madras (Chennai), Tamil Nadu",
+"first_movie": "Jodi (Tamil) / Telugu debut: Varsham (major breakthrough)"
+}
+]
+console.log(actors)
+var jsx=[]
+for(var i=0;i<actors.length;i++){
+    jsx.push(
+        <div className={actors[i].gender=="Male"?"male":"female"}>
+           <h3><u>Actor Name :</u>{actors[i].name}</h3>
+           <h4><u>Age :</u>{actors[i].age}</h4>
+           <h4><u>Gender :</u>{actors[i].gender}</h4>
+           <h4><u>Birth of Place :</u>{actors[i].birth_place}</h4>
+           <h4><u>First Movie :</u>{actors[i].first_movie}</h4>
+           <h4><u>No.of Movies :</u>{actors[i].no_of_movies}</h4>
+        </div>
+    )
+}
+ReactDOM.render(jsx,document.getElementById("cont"))
+</script>
+</html>

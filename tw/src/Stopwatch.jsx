@@ -6,10 +6,19 @@ function Stopwatch()
     const[min,setmin]=useState(0)
     function play(){
         t.current=setInterval(()=>
-    
             {
-            setsec(s=>s+1)
-            console.log(s)
+            setsec((s)=>
+                {
+                if(s==59)
+                    {
+                        setmin(m=>m+1)
+                        return 0
+                    }
+                else
+                    {
+                      return s+1
+                    }
+                })
         },100)
     }
     function pause(){

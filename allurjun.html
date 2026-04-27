@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body> 
+    <div id="root"></div>
+    <script type="text/babel">
+        var i=0
+        var aa=[
+            {
+            url:"https://i.postimg.cc/ppxzchJV/AIdro-m90XWr-TWd-IDp-AFCRce-H-XRE1f-NVwu8RIDGlga5o-ZNan-E-s900-c-k-c0x00ffffff-no-rj.jpg",
+            likes:0,
+            dislikes:0
+            },
+            {
+                url:"https://i.postimg.cc/xqGbmjVb/51p-UXOVogv-L-AC-UF894-1000-QL80.jpg",
+                likes:0,
+                dislikes:0
+            },
+            {
+            url:"https://i.postimg.cc/njbCsgdh/Allu-Arjun.jpg",
+            likes:0,
+            dislikes:0
+            },
+            {
+            url:"https://i.postimg.cc/grbhfnPF/bd5f6a810c26ab51177db4dc84f4e2d0.jpg",
+            likes:0,
+            dislikes:0
+            },
+            {
+            url:"https://i.postimg.cc/7G8C8QdC/HD-wallpaper-allu-arjun-alluarjun-for-allu-arjun.jpg",
+            likes:0,
+            dislikes:0
+            }          
+        ]
+        function gal()
+        {
+        var jsx=<div>
+                  <img src={aa[i].url}/><br/>
+                  <button onClick={()=>prev()}>Previous</button>
+                  <button onClick={()=>nxt()}>Next</button><br/>
+                  <button onClick={()=>like()}>Like<p>{aa[i].likes}</p></button>
+                  <button onClick={()=>dislike()}>DisLike<p>{aa[i].dislikes}</p></button>
+                </div>
+        ReactDOM.render(jsx,document.getElementById("root"))
+        }
+        gal();
+        function nxt(){
+            if(i==aa.length-1){
+                i=0;
+                gal();
+            }
+            else{
+            i++;
+            gal();}
+        }
+        function prev(){
+            if(i==0){
+                i=aa.length-1;
+                gal();
+            }
+            else{
+            i--;
+            gal();}
+        }
+        function like(){
+            aa[i].likes++;
+            gal();
+        }
+        function dislike(){
+            aa[i].dislikes++;
+            gal();
+        }
+        
+    </script> 
+</body>
+</html>
